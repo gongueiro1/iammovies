@@ -1,0 +1,27 @@
+@model iammovies.Models.ApplicationUser
+@{
+    ViewData["Title"] = "Perfil";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Index" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Nome</label>
+        <input type="text" name="Nome" class="form-control" value="@Model.Nome" required />
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="Email" class="form-control" value="@Model.Email" required />
+    </div>
+    <div class="form-group">
+        <label>Foto de Perfil</label><br />
+        <img src="@Model.FotoPerfil" alt="Foto" width="100" height="100" class="rounded-circle mb-2" />
+        <input type="file" name="novaFoto" class="form-control-file" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Guardar Alterações</button>
+</form>
+<br>
+<form asp-action="EliminarConta" method="post" onsubmit="return confirm('Tens a certeza que queres eliminar a tua conta? Esta ação é irreversível.')">
+    <button type="submit" class="btn btn-danger">Eliminar Conta</button>
+</form>

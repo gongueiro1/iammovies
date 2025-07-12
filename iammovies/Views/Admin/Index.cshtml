@@ -1,0 +1,37 @@
+@{
+    ViewData["Title"] = "Painel de Administração";
+}
+
+<h1 class="mb-4">Painel de Administração</h1>
+
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Gerir Filmes</h5>
+                <p class="card-text">Adiciona, edita ou remove filmes do catálogo.</p>
+                <a asp-action="GerirFilmes" class="btn btn-primary w-100">Aceder</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Gerir Utilizadores</h5>
+                <p class="card-text">Consulta todos os utilizadores registados na aplicação.</p>
+                <a asp-action="GerirUtilizadores" class="btn btn-secondary w-100">Aceder</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Estatísticas</h5>
+                <p class="card-text">Consulta dados gerais sobre filmes, favoritos e contas.</p>
+                <a asp-action="Estatisticas" class="btn btn-success w-100">Aceder</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+@model List<iammovies.Models.Favorito>
+
+<h1 class="text-3xl font-bold mb-6">Favoritos</h1>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    @foreach (var favorito in Model)
+    {
+        <div class="border border-gray-300 rounded-md p-4 shadow">
+            <img src="~/img/@favorito.Filme.Capa" alt="@favorito.Filme.Titulo" class="w-full h-auto object-cover mb-4 rounded-md" />
+            <h2 class="text-xl font-semibold mb-2">@favorito.Filme.Titulo</h2>
+            <p class="mb-1"><strong>Realizador:</strong> @favorito.Filme.Realizador</p>
+            <p class="mb-1">
+                <strong>Data de Lançamento:</strong>
+                @(favorito.Filme?.DataLancamento.HasValue == true ? favorito.Filme.DataLancamento.Value.ToString("dd/MM/yyyy") : "Data indisponível")
+            </p>
+            <p class="text-gray-700">@favorito.Filme.Descricao</p>
+
+            <form asp-controller="Favoritos" asp-action="Remover" method="post" class="mt-2">
+                <input type="hidden" name="filmeId" value="@favorito.Filme.Id" />
+                <button type="submit" class="btn fw-bold text-white px-4 py-2" style="background-color: #dc3545;">
+                    Remover dos Favoritos
+                </button>
+            </form>
+        </div>
+    }
+</div>

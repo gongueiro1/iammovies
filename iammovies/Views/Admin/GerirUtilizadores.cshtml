@@ -1,0 +1,47 @@
+@model IEnumerable<iammovies.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Gerir Utilizadores";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Foto</th>
+        <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Nome</td>
+            <td>@user.Email</td>
+            <td>
+                @if (!string.IsNullOrEmpty(user.FotoPerfil))
+                {
+                    <img src="~/@user.FotoPerfil" alt="Foto" width="50" height="50" style="object-fit: cover; border-radius: 50%;" />
+                }
+                else
+                {
+                    <span>Sem foto</span>
+                }
+            </td>
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    <span class="badge bg-danger">Admin</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Utilizador</span>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

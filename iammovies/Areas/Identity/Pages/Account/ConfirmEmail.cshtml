@@ -1,0 +1,21 @@
+﻿@page
+@model iammovies.Areas.Identity.Pages.Account.ConfirmEmailModel
+@{
+    ViewData["Title"] = "Email Confirmado";
+}
+
+<h1>@ViewData["Title"]</h1>
+@if (Model.Succeeded)
+{
+    <p>
+        Obrigado por confirmares o teu e-mail!<br/>
+        Agora já podes <a asp-page="./Login">entrar</a> na tua conta.
+    </p>
+}
+else
+{
+    <p>
+        Ocorreu um erro ao confirmar o e-mail.<br/>
+        Por favor tenta de novo mais tarde.
+    </p>
+}

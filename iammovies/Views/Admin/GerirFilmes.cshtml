@@ -1,0 +1,45 @@
+@model List<iammovies.Models.Filme>
+@{
+    ViewData["Title"] = "Gerir Filmes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Gerir Filmes</h2>
+
+<a class="btn btn-primary mb-3" asp-controller="Admin" asp-action="AdicionarFilme">Adicionar Novo Filme</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Capa</th>
+        <th>Título</th>
+        <th>Realizador</th>
+        <th>Data de Lançamento</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var filme in Model)
+    {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(filme.Capa))
+                {
+                    <img src="~/img/@filme.Capa" width="60" height="90" />
+                }
+                else
+                {
+                    <span>[Capa]</span>
+                }
+            </td>
+            <td>@filme.Titulo</td>
+            <td>@filme.Realizador</td>
+            <td>@filme.DataLancamento?.ToString("dd/MM/yyyy")</td>
+            <td>
+                <a asp-action="EditarFilme" asp-route-id="@filme.Id" class="btn btn-warning btn-sm">Editar</a>
+                <a asp-action="ApagarFilme" asp-route-id="@filme.Id" class="btn btn-danger btn-sm">Apagar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

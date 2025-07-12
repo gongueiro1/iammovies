@@ -1,0 +1,55 @@
+@model iammovies.Models.Filme
+
+@{
+    ViewData["Title"] = "Editar Filme";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Filme</h2>
+
+<form asp-action="EditarFilme" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Titulo" class="control-label">Título</label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Descricao" class="control-label">Descrição</label>
+        <textarea asp-for="Descricao" class="form-control"></textarea>
+        <span asp-validation-for="Descricao" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DataLancamento" class="control-label">Data de Lançamento</label>
+        <input asp-for="DataLancamento" type="date" class="form-control" />
+        <span asp-validation-for="DataLancamento" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Realizador" class="control-label">Realizador</label>
+        <input asp-for="Realizador" class="form-control" />
+        <span asp-validation-for="Realizador" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Capa Atual</label><br />
+        <img src="/img/@Model.Capa" width="100" height="140" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Nova Capa (opcional)</label>
+        <input type="file" name="capa" class="form-control-file" />
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-success">Guardar Alterações</button>
+    <a asp-action="GerirFilmes" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
