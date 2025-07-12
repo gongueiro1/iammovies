@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using iammovies.Models;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 
 [Authorize]
 public class PerfilController : Controller
@@ -68,12 +69,15 @@ public class PerfilController : Controller
         if (user == null)
             return RedirectToPage("/Account/Login", new { area = "Identity" });
 
+        // Apagar favoritos associados ao utilizador
         var favoritos = _context.Favoritos.Where(f => f.UtilizadorId == user.Id);
         _context.Favoritos.RemoveRange(favoritos);
-
-        await _userManager.DeleteAsync(user);
         await _context.SaveChangesAsync();
 
+        // Apagar utilizador
+        await _userManager.DeleteAsync(user);
+
+        await HttpContext.SignOutAsync(); // Faz logout
         return RedirectToAction("Index", "Home");
     }
 }
